@@ -171,6 +171,8 @@ scp /path/to/your-database-file.sql username@server-ip:/path/to/destination
 scp exported.sql xver@185.84.160.237:/home/xver
 ```
 
+สามารถส่งไฟล์หรือรับไฟล์ผ่านโปรแกรม Filezilla ได้ ซึ่งสะดวกกว่ามาก
+
 ### 11. นำเข้าไฟล์ SQL ไปยัง ฐานข้อมูล MariaDB
 
 1. **สร้างฐานข้อมูล** (หากยังไม่ได้สร้างฐานข้อมูล)
@@ -186,46 +188,3 @@ sudo mariadb -u root -p your_database_name < /path/to/your-database-file.sql
 
 sudo mariadb -u root spire_horizon_online < /home/xver/exported.sql
 ```
-
-
-
-```cmd
-sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
-```
-
-
-
-```cmd
-sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
-```
-
-
-
-```cmd
-sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
-```
-
-
-
-```cmd
-sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
-```
-
-
-
-```cmd
-sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
-```
-
-
-
-```cmd
-sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
-```
-
-
-
-```cmd
-sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
-```
-
