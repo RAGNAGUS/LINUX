@@ -188,3 +188,13 @@ sudo mariadb -u root -p your_database_name < /path/to/your-database-file.sql
 
 sudo mariadb -u root spire_horizon_online < /home/xver/exported.sql
 ```
+
+### 12. สำรองฐานข้อมูล MariaDB ออกมาเป็นไฟล์ SQL
+
+สำรองฐานข้อมูล ไปยัง Path ออกมาเป็นไฟล์ SQL
+
+```cmd
+sudo mysqldump -u root -p your_database_name > /path/to/your-database-file.sql
+
+sudo mysqldump -u root spire_horizon_online > /home/xver/exported.sql
+```
