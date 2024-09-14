@@ -6,7 +6,6 @@
 
 ```cmd
 sudo apt update
-sudo apt upgrade
 ```
 
 ### 2. ติดตั้ง MariaDB
@@ -53,7 +52,7 @@ sudo mysql -u root -p
 sudo mysql -u root
 ```
 
-### 6. อนุญาตให้ MariaDB/MySQL ยอมรับการเชื่อมต่อจากภายนอก
+### 6. กำหนดค่าที่สำคัญของ MariaDB
 
 1. เปิดไฟล์การตั้งค่าของ MariaDB (โดยปกติจะอยู่ที่ `/etc/mysql/mariadb.conf.d/50-server.cnf`) และแก้ไขค่าต่อไปนี้:
 
@@ -68,14 +67,32 @@ bind-address = 0.0.0.0
 ```
 
 3. จากนั้นบันทึกไฟล์และออกจากโปรแกรม (`Ctrl + X`, กด `Y`, แล้วกด `Enter`)
-
 4. เปิดพอร์ต 3306 บน Firewall (ถ้าจำเป็น)
 
 ```cmd
 sudo ufw allow 3306/tcp
 ```
 
-5. รีสตาร์ท MariaDB
+5. กำหนด Timeout เพื่อป้องกันการตัดการเชื่อมต่อ (ค่าเริ่มต้นคือ 28800 หรือ 8 ชั่วโมง)
+
+```cmd
+sudo nano /etc/mysql/my.cnf
+
+[mysqld]
+wait_timeout = 3600
+interactive_timeout = 3600
+max_connections = 3000
+max_user_connections = 300
+innodb_buffer_pool_size =56G
+innodb_flush_log_at_trx_commit = 2
+innodb_log_file_size = 512M
+innodb_io_capacity = 6000
+innodb_read_io_threads = 8
+innodb_write_io_threads = 16
+innodb_flush_method = O_DIRECT
+```
+
+6. รีสตาร์ท MariaDB
 
 ```cmd
 sudo systemctl restart mariadb
@@ -93,7 +110,7 @@ sudo mysql -u root
 2. สร้างฐานข้อมูล (Database)
 
 ```cmd
-CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+CREATE DATABASE MyDatabase;
 ```
 
 3. สร้างผู้ใช้ใหม่ (User) ใช้คำสั่งต่อไปนี้เพื่อสร้างผู้ใช้ใหม่ โดยให้เปลี่ยน `username` เป็นชื่อผู้ใช้ที่ต้องการ และ `password` เป็นรหัสผ่าน
