@@ -64,4 +64,28 @@
    crontab -l
    ```
 
+   ตัวอย่างการสำรองไฟล์ และลบไฟล์ที่เก่าเกิน 7 วัน (ยังไม่ได้ทดสอบ)
+
+   ```cmd
+   #!/bin/bash
+   
+   # ตั้งค่าเวลาปัจจุบันเพื่อใช้ในชื่อไฟล์สำรอง
+   DATE=$(date +"%Y-%m-%d_%H-%M-%S")
+   
+   # กำหนดชื่อไฟล์สำรอง
+   BACKUP_FILE="/home/admin/backup/backup_$DATE.sql"
+   
+   # ทำการสำรองข้อมูลจากฐานข้อมูลไปยังไฟล์
+   mysqldump -u your_db_user spire_horizon_online > $BACKUP_FILE
+   
+   # อัปโหลดไฟล์ไปยัง Google Drive ด้วย rclone
+   rclone copy $BACKUP_FILE googleDrive:/SpireHorizonOnline/DatabaseBackup
+   
+   # ลบไฟล์สำรองใน Google Drive ที่มีอายุมากกว่า 7 วัน
+   rclone delete googleDrive:/SpireHorizonOnline/DatabaseBackup --min-age 7d
+   
+   # ลบไฟล์สำรองในเครื่องที่มีอายุมากกว่า 7 วัน (ถ้ามีการเก็บไว้ในเครื่อง)
+   find /home/admin/backup/ -type f -name "*.sql" -mtime +7 -exec rm {} \;
+   ```
+
    
