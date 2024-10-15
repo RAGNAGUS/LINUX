@@ -52,6 +52,7 @@
    ```cmd
    sudo ufw status
    sudo ufw enable
+   sudo ufw allow 22/tcp
    sudo ufw allow 5000/tcp
    sudo ufw allow 7770:7780/udp
    ```
