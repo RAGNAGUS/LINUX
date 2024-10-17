@@ -13,10 +13,11 @@
    sudo apt install telnet
    ```
 
-3. ติดตั้ง libsecret
+3. ติดตั้ง libsecret และ odbc-mariadb
 
    ```cmd
    sudo apt install libsecret-1-0
+   sudo apt-get install odbc-mariadb
    ```
 
 4. ติดตั้ง OBDC
@@ -26,6 +27,8 @@
    https://mariadb.com/docs/server/connect/programming-languages/odbc-api/install/
 
    ```cmd
+   cd mariadb-connector-odbc-3.2.3-ubuntu-jammy-amd64
+   
    tar -xvzf mariadb-connector-odbc-3.2.3-ubuntu-jammy-amd64.tar.gz
    
    sudo install lib/mariadb/libmaodbc.so /usr/lib/
