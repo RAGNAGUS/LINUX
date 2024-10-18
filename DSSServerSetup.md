@@ -58,6 +58,7 @@
    sudo ufw allow 22/tcp
    sudo ufw allow 5000/tcp
    sudo ufw allow 7770:7780/udp
+   sudo ufw allow 19999/tcp
    ```
 
 6. ติดตั้ง Linux Screen
@@ -72,3 +73,4 @@
    
 
    
+
