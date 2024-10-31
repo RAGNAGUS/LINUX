@@ -81,8 +81,8 @@ sudo nano /etc/mysql/my.cnf
 [mysqld]
 wait_timeout = 3600
 interactive_timeout = 3600
-max_connections = 3000
-max_user_connections = 300
+max_connections = 5000
+max_user_connections = 500
 innodb_buffer_pool_size =56G
 innodb_flush_log_at_trx_commit = 2
 innodb_log_file_size = 512M

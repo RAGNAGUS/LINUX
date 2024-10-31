@@ -27,9 +27,9 @@
    https://mariadb.com/docs/server/connect/programming-languages/odbc-api/install/
 
    ```cmd
-   cd mariadb-connector-odbc-3.2.3-ubuntu-jammy-amd64
-   
    tar -xvzf mariadb-connector-odbc-3.2.3-ubuntu-jammy-amd64.tar.gz
+   
+   cd mariadb-connector-odbc-3.2.3-ubuntu-jammy-amd64
    
    sudo install lib/mariadb/libmaodbc.so /usr/lib/
    sudo install -d /usr/lib/mariadb/
@@ -57,7 +57,7 @@
    sudo ufw enable
    sudo ufw allow 22/tcp
    sudo ufw allow 5000/tcp
-   sudo ufw allow 7770:7780/udp
+   sudo ufw allow 7770:7870/udp
    sudo ufw allow 19999/tcp
    ```
 
