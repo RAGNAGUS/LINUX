@@ -13,3 +13,17 @@ sudo nano /etc/netdata/netdata.conf
     mode = none
 ```
 
+sudo systemctl restart netdata
+
+
+
+สามารถเปลี่ยนชื่อของ Server เพื่อแสดงใน Netdata ได้
+
+sudo nano /etc/netdata/netdata.conf
+
+```cmd
+[global]
+	hostname = your_desired_nickname
+```
+
+sudo systemctl restart netdata

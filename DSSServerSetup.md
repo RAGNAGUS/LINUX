@@ -68,9 +68,13 @@
    sudo apt install screen
    ```
 
-   
+7. วิธี Unzip
 
-   
+   ```cmd
+   sudo apt update
+   sudo apt install unzip
+   unzip file.zip
+   ```
 
    
 
