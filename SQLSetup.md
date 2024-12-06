@@ -215,3 +215,11 @@ sudo mysqldump -u root -p your_database_name > /path/to/your-database-file.sql
 
 sudo mysqldump -u root spire_horizon_online > /home/xver/exported.sql
 ```
+
+### ลบ User
+
+```cmd
+DROP USER 'username'@'host';
+```
+
+DROP USER 'mendoka'@'localhost';

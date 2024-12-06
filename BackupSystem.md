@@ -27,7 +27,7 @@
    ```cmd
    touch myFile
    
-   rclone copy myFile googleDrive:/SpireHorizonOnline/DatabaseBackup
+   rclone copy myFile SpireHorizonOnline(ชื่อรีโมท):/SpireHorizonOnline/DatabaseBackup
    ```
 
 6. การใช้ไฟล์สคริปในการ Export SQL และการสำรองไฟล์ไปยัง Google Drive
@@ -39,33 +39,41 @@
    
    DATE=$(date +"%Y-%m-%d_%H-%M-%S")
    
-   mysqldump -u mendoka -ppassword spire_horizon_online > /home/admin/backup/backup_$DATE.sql
+   mysqldump -u mendoka -p password spire_horizon_online > /home/mendoka/sho-backup/backup/backup_$DATE.sql
    
-   rclone copy /home/admin/backup/backup_$DATE.sql googleDrive:/SpireHorizonOnline/DatabaseBackup
+   rclone copy /home/mendoka/sho-backup/backup/backup_$DATE.sql SpireHorizonOnline:/SpireHorizonOnline/DatabaseBackup
    ```
 
-7. การใช้ Cron Job ในการทำงานเป็นเวลา
+7. xxxxxxxxxx exitcmd
 
    เปิดไฟล์ Cron สำหรับแก้ไขด้วยคำสั่ง:
 
    ```cmd
-   crontab -e
+   sudo crontab -u username -e
    ```
 
    เพิ่มบรรทัดต่อไปนี้ที่ท้ายไฟล์เพื่อให้ Cron Job รันสคริปต์ทุก ๆ 1 นาที:
 
    ```cmd
-   * * * * * /home/admin/backup.sh
+   * * * * * /home/mendoka/sho-backup/script/backup.sh
    ```
 
-   สามารถตรวจสอบว่า Cron Job ได้ถูกเพิ่มแล้วหรือไม่โดยใช้คำสั่ง:
+   เพิ่มบรรทัดต่อไปนี้ที่ท้ายไฟล์เพื่อให้ Cron Job รันสคริปต์ทุก ๆ 1 วัน:
 
+   ```cmd
+   0 0 * * * /home/mendoka/sho-backup/script/backup.sh
+   ```
+
+   
+
+   สามารถตรวจสอบว่า Cron Job ได้ถูกเพิ่มแล้วหรือไม่โดยใช้คำสั่ง:
+   
    ```cmd
    crontab -l
    ```
-
+   
    ตัวอย่างการสำรองไฟล์ และลบไฟล์ที่เก่าเกิน 7 วัน (ยังไม่ได้ทดสอบ)
-
+   
    ```cmd
    #!/bin/bash
    
@@ -73,19 +81,19 @@
    DATE=$(date +"%Y-%m-%d_%H-%M-%S")
    
    # กำหนดชื่อไฟล์สำรอง
-   BACKUP_FILE="/home/admin/backup/backup_$DATE.sql"
+   BACKUP_FILE="/home/mendoka/sho-backup/backup/backup_$DATE.sql"
    
    # ทำการสำรองข้อมูลจากฐานข้อมูลไปยังไฟล์
-   mysqldump -u your_db_user spire_horizon_online > $BACKUP_FILE
+   mysqldump -u mendoka -p password spire_horizon_online > $BACKUP_FILE
    
    # อัปโหลดไฟล์ไปยัง Google Drive ด้วย rclone
-   rclone copy $BACKUP_FILE googleDrive:/SpireHorizonOnline/DatabaseBackup
+   rclone copy $BACKUP_FILE SpireHorizonOnline:/SpireHorizonOnline/DatabaseBackup
    
    # ลบไฟล์สำรองใน Google Drive ที่มีอายุมากกว่า 7 วัน
-   rclone delete googleDrive:/SpireHorizonOnline/DatabaseBackup --min-age 7d
+   rclone delete SpireHorizonOnline:/SpireHorizonOnline/DatabaseBackup --min-age 7d
    
    # ลบไฟล์สำรองในเครื่องที่มีอายุมากกว่า 7 วัน (ถ้ามีการเก็บไว้ในเครื่อง)
-   find /home/admin/backup/ -type f -name "*.sql" -mtime +7 -exec rm {} \;
+   find /home/mendoka/sho-backup/backup/ -type f -name "*.sql" -mtime +7 -exec rm {} \;
    ```
-
+   
    

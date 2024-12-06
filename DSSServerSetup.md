@@ -61,7 +61,7 @@
    sudo ufw allow 19999/tcp
    ```
 
-6. ติดตั้ง Linux Screen
+6. xxxxxxxxxx exitcmd
 
    ```cmd
    sudo apt update
