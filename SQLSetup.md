@@ -54,7 +54,7 @@ sudo mysql -u root
 
 ### 6. กำหนดค่าที่สำคัญของ MariaDB
 
-1. เปิดไฟล์การตั้งค่าของ MariaDB (โดยปกติจะอยู่ที่ `/etc/mysql/mariadb.conf.d/50-server.cnf`) และแก้ไขค่าต่อไปนี้:
+1. xxxxxxxxxx exitcmd
 
 ```cmd
 sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
