@@ -110,7 +110,7 @@ sudo mysql -u root
 2. สร้างฐานข้อมูล (Database)
 
 ```cmd
-CREATE DATABASE MyDatabase;
+CREATE DATABASE spire_horizon_online;
 ```
 
 3. สร้างผู้ใช้ใหม่ (User) ใช้คำสั่งต่อไปนี้เพื่อสร้างผู้ใช้ใหม่ โดยให้เปลี่ยน `username` เป็นชื่อผู้ใช้ที่ต้องการ และ `password` เป็นรหัสผ่าน
